@@ -6,7 +6,7 @@ using Moq;
 using NUnit.Framework;
 namespace SuperHeroUnitTest
 {
-    public class Tests
+    public class Test
     {
 
         [Test]
