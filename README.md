@@ -5,7 +5,9 @@ This is my backend project. I have built APIs that creates, reads, update and de
 Also I have created an api that calls to the Pokemon API (https://pokeapi.co/) and the user can search for a pokemon they desire. If they search for a NON existing pokemon such as Josh, they get attacked by one of the random superheroes in the MockDatabase.json file. If they search for an EXISTING pokemon then the pokemon fights baack and inflicts damage to the randomly selected superhero. 
 
 How does the middleware via dependency injection simlify my code?
-Answer : Through dependency injection, you don't need to create instances of an object and therefore it makes my code loosely and easier to test as I can mock for unit test. 
+Answer : Through dependency injection, you don't need to create instances of an object and therefore it makes my code loosely and easier to test as I can mock for unit test. So my assembly (service layer) is dependent on Pokemon and Superhero and to inject I created an interface for pokemon, superhero and assembly.
+![image](https://user-images.githubusercontent.com/109708208/183777036-42eecabb-d498-423a-ae24-e78a3353a51e.png)
+
 
 
 Demonstrate use of NUnit to test code
