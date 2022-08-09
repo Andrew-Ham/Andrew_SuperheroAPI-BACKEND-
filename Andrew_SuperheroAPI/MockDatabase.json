@@ -1,0 +1,44 @@
+[
+  {
+    "Id": 1,
+    "Name": "Superman",
+    "FirstName": null,
+    "LastName": null,
+    "Age": 0
+  },
+  {
+    "Id": 2,
+    "Name": "Aquaman",
+    "FirstName": "string",
+    "LastName": "string",
+    "Age": 0
+  },
+  {
+    "Id": 3,
+    "Name": "Joker",
+    "FirstName": "string",
+    "LastName": "string",
+    "Age": 0
+  },
+  {
+    "Id": 4,
+    "Name": "Wonderwoman",
+    "FirstName": null,
+    "LastName": null,
+    "Age": 0
+  },
+  {
+    "Id": 5,
+    "Name": "Thanos",
+    "FirstName": null,
+    "LastName": null,
+    "Age": 0
+  },
+  {
+    "Id": 6,
+    "Name": "Captain America",
+    "FirstName": "string",
+    "LastName": "string",
+    "Age": 0
+  }
+]
