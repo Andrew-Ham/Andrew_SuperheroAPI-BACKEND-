@@ -2,6 +2,7 @@ global using Andrew_SuperheroAPI.Data;
 global using Microsoft.EntityFrameworkCore;
 using Andrew_SuperheroAPI;
 using Andrew_SuperheroAPI.Contracts;
+using Andrew_SuperheroAPI.Repositories;
 using Andrew_SuperheroAPI.Service;
 using Andrew_SuperheroAPI.Services;
 using AspNetCoreRateLimit;
@@ -28,8 +29,8 @@ builder.Services.AddDbContext<DataContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
-builder.Services.AddResponseCaching(); //Use Caching
-builder.Services.ConfigureHttpCacheHeaders();
+//builder.Services.AddResponseCaching(); //Use Caching
+//builder.Services.ConfigureHttpCacheHeaders();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -51,6 +52,7 @@ builder.Services.AddHttpClient("superHeroapi", configureClient: client =>
 builder.Services.AddScoped<ICharacterAssemble, CharacterAssemble>();
 builder.Services.AddScoped<IPokemon, Pokemon>();
 builder.Services.AddScoped<ISuperHero, SuperHero>();
+builder.Services.AddScoped<ICharacterRepository, CharacterRepository>();
 
 var app = builder.Build();
 
@@ -64,8 +66,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseResponseCaching(); //Use Caching
-app.UseHttpCacheHeaders(); //Caching
+//app.UseResponseCaching(); //Use Caching
+//app.UseHttpCacheHeaders(); //Caching
 app.UseIpRateLimiting(); // 
 
 

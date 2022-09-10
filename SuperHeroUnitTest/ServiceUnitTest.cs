@@ -15,9 +15,9 @@ namespace SuperHeroUnitTest
             var mockPokemon = new Mock<IPokemon>();
             var mockSuperHero = new Mock<ISuperHero>();
 
-            var mockedObject = new List<Character>()
+            var mockedObject = new List<CharacterDTO>()
             {
-                new Character() { Name = "Andrew", Id = 100}
+                new CharacterDTO() { Name = "Andrew", Id = 100}
             };
 
             mockSuperHero.Setup(x => x.GetSuperHeroes()).Returns(mockedObject);
@@ -32,9 +32,9 @@ namespace SuperHeroUnitTest
             var mockPokemon = new Mock<IPokemon>();
             var mockSuperHero = new Mock<ISuperHero>();
 
-            var mockedObject = new List<Character>()
+            var mockedObject = new List<CharacterDTO>()
             {
-                new Character() { Name = "BatMan", Id = 100}
+                new CharacterDTO() { Name = "BatMan", Id = 100}
             };
 
             mockSuperHero.Setup(x => x.GetSuperHeroes()).Returns(mockedObject);

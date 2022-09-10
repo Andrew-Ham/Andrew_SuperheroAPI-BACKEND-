@@ -4,10 +4,10 @@ namespace Andrew_SuperheroAPI.Contracts
 {
     public interface ICharacterAssemble
     {
-        Task<string> PokemonBattle(string pokemonName);
-        List<Character> GetCharacters();
-        List<Character>  DeleteCharacter(int id);
-        List<Character> UpdateSuperHero(Character requestCharacter);
-        List<Character> PostSuperHero(Character requestCharacter);
+        //Task<string> PokemonBattle(string pokemonName);
+        Task<IList<Character>> GetCharacters();
+        //List<CharacterDTO>  DeleteCharacter(int id);
+        //List<CharacterDTO> UpdateSuperHero(CharacterDTO requestCharacter);
+        //List<CharacterDTO> PostSuperHero(CharacterDTO requestCharacter);
     }
 }

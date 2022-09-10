@@ -3,9 +3,9 @@
     public interface ISuperHero 
     {
         //Task<Character> GetSuperHero(int id);
-        List<Character> GetSuperHeroes();
-        List<Character> DeleteSuperHero(int id);
-        List<Character> UpdateSuperHero(Character requestCharacter);
-        List<Character> PostSuperHero(Character requestCharacter);
+        Task<IList<CharacterDTO>> GetSuperHeroes();
+        //List<CharacterDTO> DeleteSuperHero(int id);
+        //List<CharacterDTO> UpdateSuperHero(CharacterDTO requestCharacter);
+        //List<CharacterDTO> PostSuperHero(CharacterDTO requestCharacter);
     }
 }
