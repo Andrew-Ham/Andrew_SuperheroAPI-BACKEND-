@@ -9,6 +9,8 @@ namespace Andrew_SuperheroAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+
+
     public class CharacterController : ControllerBase
     {
         private readonly ICharacterAssemble _characterService;
@@ -18,93 +20,107 @@ namespace Andrew_SuperheroAPI.Controllers
             _characterService = characterAssemble;
         }
 
+
+
         [HttpGet]
-        //[HttpCacheExpiration(CacheLocation = CacheLocation.Public, MaxAge = 120)]
+        [HttpCacheExpiration(CacheLocation = CacheLocation.Public, MaxAge = 120)]
         public async Task<ActionResult<List<Character>>> GetCharacters()
         {
             return Ok(await _characterService.GetCharacters());
         }
 
-        //[HttpGet]
-        //[HttpCacheExpiration(CacheLocation = CacheLocation.Public, MaxAge = 120)]
+        [HttpGet]
+        [Route("CharacterName")]
+        [HttpCacheExpiration(CacheLocation = CacheLocation.Public, MaxAge = 120)]
+        public async Task<ActionResult<List<Character>>> GetCharacterByName(string name)
+        {
+            var findCharacter = await _characterService.GetCharacterByName(name);
+            if (findCharacter == null)
+            {
+                return BadRequest("The character does NOT exists!");
+            }
+            return Ok(await _characterService.GetCharacterByName(name));
+        }
 
 
-        //[HttpGet]
-        //[HttpCacheExpiration(CacheLocation = CacheLocation.Public, MaxAge = 60)]
-        //public async Task<ActionResult<List<CharacterDTO>>> Get() // Having Task<IActionResult> defines a contract that represents the result of an action method which will not display scheme or data
-        //{
-        //    // return Ok(_characterService.GetCharacters());
-        //    return Ok(await this.context.characters.ToListAsync());
-        //}
 
-        //[HttpGet("{id}")]
-        //[ResponseCache(CacheProfileName = "120SecondsDuration")]
-        //public async Task<ActionResult<CharacterDTO>> Get(int id) // Having Task<IActionResult> defines a contract that represents the result of an action method which will not display scheme or data
-        //{
-        //    // var character = _characterService.GetCharacters().Find(element => element.Id == id); //find character we want 
-        //    var character = await this.context.characters.FindAsync(id);
-        //    if (character == null)
-        //        return BadRequest("The character you are looking for does not exist!");
-        //    return Ok(character);
-        //}
+        [HttpGet]
+        [Route("HighestPaid")]
+        [HttpCacheExpiration(CacheLocation = CacheLocation.Public, MaxAge = 120)]
+        public async Task<ActionResult<Character>> GetHighestPaidCharacter()
+        {
+            return Ok(await _characterService.GetHighestSalaryChracter());
+        }
 
-        //[HttpPost]
-        //public async Task<ActionResult<List<CharacterDTO>>> AddCharacter(CharacterDTO request)
-        //{
-        //    this.context.characters.Add(request);
-        //    //var character = _characterService.GetCharacters().Find(element => element.Id == request.Id);
-        //        //var character = this.context.characters.Add(request);
-        //    await this.context.SaveChangesAsync();
-        //        //if (character != null)
-        //            //return BadRequest("This unique ID already exists, Please use different ID");
-        //    //return Ok(_characterService.PostSuperHero(request));
-        //    return Ok(await this.context.characters.ToListAsync());
-        //}
+        [HttpPost]
+        [Route("Character")]
+        public async Task<ActionResult<IList<CharacterDTO>>> AddCharacter(Character request)
+        {
+            var findCharacter = await _characterService.GetCharacterByName(request.Name);
+            if (findCharacter == null)
+            {
+                var characterDTO = new CharacterDTO()
+                {
+                    Name = request.Name,
+                    FirstName = request.FirstName,
+                    LastName = request.LastName,
+                    Age = request.Age,
+                    Location = request.Location,
+                    Strength = request.Strength,
+                    HoursWorked = request.HoursWorked,
+                    HourlyRate = request.HourlyRate,
+                };
+                return Ok(await _characterService.PostCharacter(characterDTO));
+            }
+            else
+            {
+                return BadRequest("The character already exists!");
+            }
+        }
 
+        [HttpPut]
+        [Route("CharacterUpdate")]
+        public async Task<ActionResult<IList<CharacterDTO>>> UpdateCharacter(Character request)
+        {
+            var findCharacter = await _characterService.GetCharacterByName(request.Name); //find the character we want
+            if (findCharacter == null)
+            {
+                return BadRequest("The character you are looking for does not exist!");
+            }
+            else
+            {
+                return Ok(await _characterService.UpdateCharacter(request));
+            }
+        }
 
-        //[HttpPut]
-        //public async Task<ActionResult<List<CharacterDTO>>> UpdateCharacter(CharacterDTO request)
-        //{
-        //    //var character = _characterService.GetCharacters().Find(element => element.Id == request.Id); //find the character we want
-        //    var dbCharacter = await this.context.characters.FindAsync(request.Id);
-        //    if (dbCharacter == null)
-        //        return BadRequest("The character you are looking for does not exist!");
+        [HttpDelete]
+        [Route("CharacterDelete")]
+        public async Task<ActionResult<IList<CharacterDTO>>> DeleteCharacter(string name)
+        {
+            var findCharacter = await _characterService.GetCharacterByName(name);
+            if (findCharacter == null)
+            {
+                return BadRequest("The character you are trying to delete does not exist");
+            }
+            else
+            {
+                return Ok(await _characterService.DeleteCharacter(findCharacter));
+            }
+        }
 
-        //    dbCharacter.Name = request.Name;
-        //    dbCharacter.FirstName = request.FirstName;
-        //    dbCharacter.LastName = request.LastName;
-        //    dbCharacter.Age = request.Age;
+        [HttpGet]
+        [Route("ProcessCharacterPay")]
+        public async Task<ActionResult<IList<CharacterPay>>> ProcessCharacterPay()
+        {
+            return Ok(await _characterService.GetCharacterPays());
+        }
 
-        //    await this.context.SaveChangesAsync();
-
-        //   // return Ok(_characterService.UpdateSuperHero(request));
-        //   return Ok(await this.context.characters.ToListAsync());
-
-        //}
-
-        //[HttpDelete("{id}")]
-        //public async Task<ActionResult<List<CharacterDTO>>> DeleteCharacter(int id)
-        //{
-        //   // var character = _characterService.GetCharacters().Find(element => element.Id == id); //find the character we want
-        //   var dbCharacter = await this.context.characters.FindAsync(id); 
-        //    if (dbCharacter == null)
-        //        return BadRequest("The character you are looking for does not exist!");
-
-        //    //_characterService.DeleteCharacter(id);
-        //    this.context.characters.Remove(dbCharacter);
-        //    await this.context.SaveChangesAsync();
-
-        //    return Ok(await this.context.characters.ToListAsync());
-
-        //}
-
-        //[HttpGet]
-        //[Route("/pokemon/{pokemonName}")]
-        //[ProducesResponseType(typeof(string), StatusCodes.Status200OK)] //When status code 200, it product response type of string
-        //public async Task<IActionResult> PokemonFight([Required] string pokemonName)
-        //{
-        //    return new OkObjectResult(await _characterService.PokemonBattle(pokemonName));
-        //}
+        [HttpGet]
+        [Route("PokemonFight")]
+        public async Task<ActionResult<string>> GetPokemonFight(string pokemonName)
+        {
+            return Ok(await _characterService.PokemonBattle(pokemonName));
+        }
 
     }
 }

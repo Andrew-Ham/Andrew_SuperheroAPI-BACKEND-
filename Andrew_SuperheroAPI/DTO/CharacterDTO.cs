@@ -13,11 +13,16 @@ namespace Andrew_SuperheroAPI
         public string LastName { get; set; }    
         public int Age { get; set; }
 
-        public DateTime BirthYear
+        public string Location { get; set; }
+        public int Strength { get; set; }
+        public decimal HoursWorked { get; set; }
+        public decimal HourlyRate { get; set; }
+
+        public string BirthYear
         {
             get
             {
-                return DateTime.Now.AddYears((Age * -1));
+                return DateTime.Now.AddYears((Age * -1)).ToString("yyyy");
             }
         }
 

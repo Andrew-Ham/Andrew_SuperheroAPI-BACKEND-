@@ -19,7 +19,12 @@ namespace Andrew_SuperheroAPI.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Age = table.Column<int>(type: "int", nullable: false)
+                    Age = table.Column<int>(type: "int", nullable: false),
+                    Location = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Strength = table.Column<int>(type: "int", nullable: false),
+                    HoursWorked = table.Column<decimal>(type: "decimal(18,0)", nullable: false),  
+                    HourlyRate = table.Column<decimal>(type: "decimal(18,0)", nullable: false),
+
                 },
                 constraints: table =>
                 {
