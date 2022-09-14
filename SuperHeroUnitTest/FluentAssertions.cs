@@ -18,6 +18,7 @@ namespace SuperHeroUnitTest
     {
         private ICharacterAssemble _characterAssemble;
         private ICharacterPayCalculator _characterPayCalculator;
+        //yes
 
         private Mock<ICharacterRepository> _characterRepositryMock;
         //private Mock<ICharacterPayCalculator> _characterPayCalculator;
