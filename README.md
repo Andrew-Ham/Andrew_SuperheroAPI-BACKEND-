@@ -22,7 +22,7 @@ My APIs and data can interact with an external API (I used pokeApi: https://poke
 Build should succeed! You should be able to go into SQL now and edit the superherodb!
 
 
-
+# Q&A Below!
 ### How does the middleware via dependency injection simlify my code?
 Answer : Through dependency injection, you don't need to create instances of an object and therefore it makes my code loosely and easier to test as I can mock for unit test. So my assembly (service layer) is dependent on Pokemon and Superhero and to inject I created an interface for pokemon, superhero and assembly.
 ![image](https://user-images.githubusercontent.com/109708208/183777036-42eecabb-d498-423a-ae24-e78a3353a51e.png)
