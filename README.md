@@ -1,8 +1,27 @@
 # Introduction
 
-This is my backend project. I have built APIs that creates, reads, update and deletes from a MockDatabase.json file which acts as a database (has preset superhero entries with their Ids and Name). 
+This is my backend project. I have built APIs that creates, reads, update and deletes from a local SQL database using EF core.
 
-Also I have created an api that calls to the Pokemon API (https://pokeapi.co/) and the user can search for a pokemon they desire. If they search for a NON existing pokemon such as Josh, they get attacked by one of the random superheroes in the MockDatabase.json file. If they search for an EXISTING pokemon then the pokemon fights baack and inflicts damage to the randomly selected superhero. 
+## :computer: Features!
+- Usage of EF Core (Using code first migration!)
+- End to end testing using Postman
+- Comprehensive unit testing
+- Usage of caching to speed up calls 
+- Usage of API throttling to limit number of API requests per 5 seconds.
+- Comprehensive unit testing (Fluent assertions, mock etc).
+- Demonstration of BE logic (payroll type behavior)
+- Onion structure using microservice pattern folder structure.
+
+My APIs and data can interact with an external API (I used pokeApi: https://pokeapi.co/).
+
+### Set up (EF Core - Code first migration!)
+- You must have Microsoft SQL Server Management downloaded
+- If you look at appsettings.json, the default connection string is set to "server=(localdb)\\mssqllocaldb. This means when you launch SQL the server name should be set to:    (localdb)\MSSQLLocalDB
+- In package manager console, go into the server directory so : cd.\Andrew_SuperheroAPI
+- Type:  dotnet ef database update
+Build should succeed! You should be able to go into SQL now and edit the superherodb!
+
+
 
 ### How does the middleware via dependency injection simlify my code?
 Answer : Through dependency injection, you don't need to create instances of an object and therefore it makes my code loosely and easier to test as I can mock for unit test. So my assembly (service layer) is dependent on Pokemon and Superhero and to inject I created an interface for pokemon, superhero and assembly.
